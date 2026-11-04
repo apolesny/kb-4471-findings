@@ -1,6 +1,6 @@
 ---
 layout: runbook
-title: '#4471 · two problems merged as one'
+title: '#4471 · three problems merged as one'
 owner: support desk
 status: split
 reviewed: 2026-11-04
@@ -16,20 +16,23 @@ signature: v1.eyJzdWIiOiIzODY1IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYX
 
 Since April, people have told us their bookings land on the wrong day. By 4 October the desk had
 **412 reports** (the export repeats 15 rows; counted once by id). They were merged into #4471 as
-one parser bug. They are two problems.
+one parser bug. They are three problems.
 
 <Callout>
-Not one issue. #4471 holds two problems, and only the first is the parser.
+Not one issue. #4471 holds three problems, and only the first is the parser.
 </Callout>
 
-## The two problems
+## The three problems
 
 | # | Problem | Reports | Status |
 |---|---------|--------:|--------|
-| 1 | The shared parser reads dates month first; day-first tenants get flipped dates | 379 | fixed: `fix(dates): parse dd/mm for eu locales` |
+| 1 | The shared parser reads dates month first; day-first tenants get flipped dates | 374 | fixed: `fix(dates): parse dd/mm for eu locales` |
 | 2 | The booking-v3 form hint prints `MM/DD/YYYY` to day-first tenants (copper.studio, alder.physio, pale.harbour) | 33 | won't fix: booking-v3 form retired |
+| 3 | Dates move by one day (time zone or DST, not a month flip) | 5 | open: no ticket of its own until now |
 
-379 + 33 = 412. Footnote: 5 of the 379 (R-41202, R-41209, R-41236, R-41344, R-41620) read as a one-day move, not a month flip; they are filed under `parser` by tenant. Intake tagged 23 of the `parser` group as `hint` and 15 of the `hint` group as `parser`: the tag is a guess, the tenant is the evidence.
+374 + 33 + 5 = 412. The cause table below files problem 3's five reports under `parser` because
+it sorts by tenant, so it shows 379 there. Intake tagged 23 of the `parser` group as `hint` and 15 of
+the `hint` group as `parser`: the tag is a guess, the tenant is the evidence.
 
 ## What was merged
 
@@ -41,7 +44,7 @@ Not one issue. #4471 holds two problems, and only the first is the parser.
 
 ## Lessons
 
-- Merging by subject put two causes into one ticket. Read the tenant and the channel, not just the subject.
+- Merging by subject put three causes into one ticket. Read the tenant and the channel, not just the subject.
 - A count is only as good as its cause: count the reports each problem really covers.
 
 <RenderStamp {signature} />
