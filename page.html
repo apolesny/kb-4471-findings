@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>#4471 · three problems merged as one</title>
+<style>body{font:16px/1.5 system-ui;max-width:48rem;margin:2rem auto;padding:0 1rem}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:.3rem .6rem}.callout{background:#fff4e5;padding:.6rem 1rem;border-left:4px solid #e08a00}.stamp{font:.85rem monospace;color:#666}</style></head>
+<body><main>
+<h1>#4471 · three problems merged as one</h1>
+<p>owner: support desk · status: split · reviewed: 2026-11-04</p>
+<p>Since April, people have told us their bookings land on the wrong day. By 4 October the desk had <strong>412 reports</strong> (the export repeats 15 rows; counted once by id). They were merged into #4471 as one parser bug. They are three problems.</p>
+<p class="callout">Not one issue. #4471 holds three problems, and only the first is the parser.</p>
+<h2>The three problems</h2>
+<table><thead><tr><th>#</th><th>Problem</th><th>Reports</th><th>Status</th></tr></thead><tbody>
+<tr><td>1</td><td>The shared parser reads dates month first; day-first tenants get flipped dates</td><td>374</td><td>fixed: <code>fix(dates): parse dd/mm for eu locales</code></td></tr>
+<tr><td>2</td><td>The booking-v3 form hint prints <code>MM/DD/YYYY</code> to day-first tenants (copper.studio, alder.physio, pale.harbour)</td><td>33</td><td>won't fix: booking-v3 form retired</td></tr>
+<tr><td>3</td><td>Dates move by one day (time zone or DST, not a month flip)</td><td>5</td><td>open: no ticket of its own until now</td></tr>
+</tbody></table>
+<p>374 + 33 + 5 = 412. The cause table in the kb files problem 3's five reports under <code>parser</code> because it sorts by tenant, so it shows 379 there. Intake tagged 23 of the <code>parser</code> group as <code>hint</code> and 15 of the <code>hint</code> group as <code>parser</code>: the tag is a guess, the tenant is the evidence.</p>
+<h2>Lessons</h2>
+<ul><li>Merging by subject put three causes into one ticket. Read the tenant and the channel, not just the subject.</li><li>A count is only as good as its cause: count the reports each problem really covers.</li></ul>
+<p class="stamp">desk ref <b>DR-EQDT-QZFH</b></p>
+</main></body></html>
